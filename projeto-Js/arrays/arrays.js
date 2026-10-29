@@ -97,15 +97,121 @@ console.log(atendido, saiu);
 
 // -----------------
 
-const aluno = {nome: "Otávio", idade: 22};
+// const aluno = {nome: "Otávio", idade: 22};
 
-aluno.idade = 21;
+// aluno.idade = 21;
 
-aluno.cidade = "Sp";
+// aluno.cidade = "Sp";
 
 
-console.log(aluno);
+// console.log(aluno);
 
-delete aluno.cidade;
+// delete aluno.cidade;
 
-console.log(aluno);
+// console.log(aluno);
+
+// Filter, map, Find, Reduce
+
+// function dobro(n) { // junior
+//     return n * 2;
+// }
+
+// const dobroArrow = (n) => { //function  função anonima // pleno
+//     return n * 1; 
+// }
+
+
+// const dobroCurto = n => n * 2; // sênior // estudar mais
+
+// ---------
+
+// filter /////
+
+const lucas = { name: "Lucas", lastName: "Garcez", age: 20 };
+const maria = { name: "Maria", lastName: "Oliveira", age: 17 };
+const joao = { name: "João", lastName: "Silva", age: 18 };
+const ana = { name: "Ana", lastName: "Santos", age: 22 };
+
+const people = [lucas, maria, joao, ana];
+// FILTER // pega um array original e transforma ele, entrega um array novo
+
+
+console.log("=== FILTER ====");
+
+const maiores = people.filter((value, index, array) => {
+    console.log("Index", index);
+    console.log("Value", value.name);
+    console.log("--------")
+
+    return value.age >= 18;
+});
+
+console.log("Resultado filter", maiores);
+
+// Função MAP
+// Usa bastante 
+
+console.log("======MAP=======");
+
+const nomes = people.map((value, index, array) => {
+    console.log("Index", index);
+    console.log("Value", value.name);
+    console.log("===================");
+    return value.name;
+}) 
+
+console.log("Resultado map:", nomes);
+
+// --------------
+
+console.log("=======FIND======");
+
+const mariaEncontrada = people.find((value, index, array) =>{
+    console.log("Index", index);
+    console.log("Index", value.name);
+    return value.name === "Maria";
+})
+
+console.log("Resultado find:", mariaEncontrada);
+
+const pedro = people.find(p => p.name === "Pedro");
+
+console.log(pedro);
+if (pedro === undefined) {
+    console.log("Pessoa não encontrada");
+}
+
+// -----------
+
+console.log("===== Reduce =====");
+
+// array.reduce((acumulador, elementoAtual, indice, arrayOriginal) => {
+
+// }, valorOriginal);
+
+const somaIdades = people.reduce((acc, value, index, array) => {
+    console.log("Index", index);
+    console.log("Value", value.name, value.age);
+    console.log("Acumulador antes:", acc);
+    return acc + value.age;
+}, 0) // (acc) > acumulador
+
+console.log("Resultado Reduce", somaIdades);
+
+// ----
+
+const nomesMaiores = people
+.filter(p => p.age >= 18)
+.map(p => p.name.toUpperCase()); // letras maiusculas
+
+console.log(nomesMaiores);
+
+// ----
+
+// 18 ou mais
+
+const somarMaiores = people
+.filter(p => p.age >= 18)
+.reduce((acc, p) => acc + p.age, 0);
+
+console.log(somarMaiores);
